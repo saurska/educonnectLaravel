@@ -3,7 +3,11 @@ import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
+            <div className='w-1/2'>
+                <span className='text-white'>asfjlsan s</span>
+            </div>
+           <div className='w-1/2  flex flex-col sm:justify-center items-center pt-6 sm:pt-0'>
             <div>
                 <Link href="/">
                     <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
@@ -12,6 +16,7 @@ export default function Guest({ children }) {
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {children}
+            </div>
             </div>
         </div>
     );

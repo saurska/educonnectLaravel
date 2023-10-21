@@ -14,9 +14,7 @@ export default function Register() {
         password: '',
         password_confirmation: '',
         class: '',
-        enrollment_no: '',
-        semester: '',
-        signupAs:'Student',
+        signupAs:'Teacher',
     });
 
     useEffect(() => {
@@ -36,7 +34,7 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit}>
-                <SwitchRole role= {data.signupAs}/>
+                <SwitchRole role ={data.signupAs}/>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -89,6 +87,21 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
+                    <InputLabel htmlFor="class" value="Class" />
+
+                    <TextInput
+                        id="class"
+                        name="class"
+                        value={data.class}
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('class', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
                     <TextInput
@@ -103,62 +116,6 @@ export default function Register() {
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="enrollment_no" value="Enrollment No" />
-
-                    <TextInput
-                        id="enrollment_no"
-                        name="enrollment_no"
-                        value={data.enrollment_no}
-                        className="mt-1 block w-full"
-                        onChange={(e) => setData('enrollment_no', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="class" value="Class" />
-
-                    <select
-                        id="class"
-                        name="class"
-                        value={data.class}
-                        className="mt-1 block w-full rounded-lg bg-transparent text-slate-200"
-                        onChange={(e) => setData('class', e.target.value)}
-                        required
-                    > 
-                        <option value="" className='text-sm text-black'>Select One</option>
-                        <option value="student" className='text-sm text-black'>Student</option>
-                        <option value="teacher" className='text-sm text-black'>Teacher</option>
-                        <option value="admin" className='text-sm text-black'>Admin</option>
-                    
-                    </select>
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="semester" value="Semester" />
-
-                    <select
-                        id="semester"
-                        name="semester"
-                        value={data.semester}
-                        className="mt-1 block w-full rounded-lg"
-                        onChange={(e) => setData('semester', e.target.value)}
-                        required
-                    >
-                        <option value="">Select One</option>
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="admin">Admin</option>
-                    </select>
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
