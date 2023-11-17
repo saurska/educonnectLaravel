@@ -18,7 +18,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Main', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -42,13 +42,13 @@ Route::get('/login',[TeacherController::class, 'index'] )->name('teacher_login_f
 
 Route::get('/login/owner',[TeacherController::class, 'login'] )->name('teacher_login');
 
-Route::get('/dashboard',[TeacherController::class, 'dashboard'] )->name('teacher_dashboard');
+Route::get('/dashboard',[TeacherController::class, 'dashboard'] )->name('teacher.dashboard');
 
 // Register Routes
 
 Route::get('/register',[TeacherController::class, 'index'] )->name('teacher_register_form');
 
-// Route::post('/register',[TeacherController::class, 'index'] )->name('teacher_register_form_post');
+Route::post('/register',[TeacherController::class, 'store'] )->name('teacher.register');
 
 
 });

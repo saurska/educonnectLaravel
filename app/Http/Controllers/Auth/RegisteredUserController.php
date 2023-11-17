@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Semester;
+use App\Models\MsitClass;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -18,10 +20,17 @@ class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
+     * 
      */
+
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        $semesters = Semester::all();
+        $classes = MsitClass::all();
+        return Inertia::render('Auth/Register', [
+            'classes' => $classes,
+            'semesters' => $semesters,
+        ]);
     }
 
     /**
@@ -41,6 +50,9 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'enrollment_no' => $request->enrollment_no,
+            'class' => $request->class,
+            'semester' => $request->semester,
         ]);
 
         event(new Registered($user));

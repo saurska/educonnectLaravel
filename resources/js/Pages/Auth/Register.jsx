@@ -7,7 +7,7 @@ import TextInput from '@/Components/TextInput';
 import SwitchRole from '@/Components/SwitchRole';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
+export default function Register({classes, semesters}) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -117,7 +117,7 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.enrollment_no} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -131,14 +131,16 @@ export default function Register() {
                         onChange={(e) => setData('class', e.target.value)}
                         required
                     > 
-                        <option value="" className='text-sm text-black'>Select One</option>
-                        <option value="student" className='text-sm text-black'>Student</option>
-                        <option value="teacher" className='text-sm text-black'>Teacher</option>
-                        <option value="admin" className='text-sm text-black'>Admin</option>
+                <option value="" className="text-sm text-black">Select One</option>
+                {classes.map((classItem) => (
+                    <option key={classItem.id} value={classItem.name} className="text-sm text-black">
+                        {classItem.name}
+                    </option>
+                ))}
                     
                     </select>
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.class} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -148,17 +150,19 @@ export default function Register() {
                         id="semester"
                         name="semester"
                         value={data.semester}
-                        className="mt-1 block w-full rounded-lg"
+                        className="mt-1 block w-full bg-transparent text-slate-200 rounded-lg"
                         onChange={(e) => setData('semester', e.target.value)}
                         required
                     >
-                        <option value="">Select One</option>
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="admin">Admin</option>
+                <option value="" className='text-sm text-black'>Select One</option>
+                 {semesters.map((semester) => (
+                    <option key={semester.id} value={semester.name} className='text-sm text-black'>
+                        {semester.name}
+                    </option>
+                ))}
                     </select>
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.class} className="mt-2" />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">

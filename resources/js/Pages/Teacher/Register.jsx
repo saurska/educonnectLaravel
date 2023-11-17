@@ -26,7 +26,7 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        post(route('teacher.register'));
     };
 
     return (
@@ -86,20 +86,7 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="class" value="Class" />
 
-                    <TextInput
-                        id="class"
-                        name="class"
-                        value={data.class}
-                        className="mt-1 block w-full"
-                        onChange={(e) => setData('class', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
