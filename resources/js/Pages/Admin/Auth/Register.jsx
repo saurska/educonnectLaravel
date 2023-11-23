@@ -7,16 +7,13 @@ import TextInput from '@/Components/TextInput';
 import SwitchRole from '@/Components/SwitchRole';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register({classes, semesters}) {
+export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
-        class: '',
-        enrollment_no: '',
-        semester: '',
-        signupAs:'Student',
+        signupAs:'Admin',
     });
 
     useEffect(() => {
@@ -28,7 +25,7 @@ export default function Register({classes, semesters}) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        post(route('admin.register'));
     };
 
     return (
@@ -36,7 +33,7 @@ export default function Register({classes, semesters}) {
             <Head title="Register" />
 
             <form onSubmit={submit}>
-                <SwitchRole role= {data.signupAs} />
+                <SwitchRole role= {data.signupAs}/>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -105,69 +102,10 @@ export default function Register({classes, semesters}) {
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="enrollment_no" value="Enrollment No" />
-
-                    <TextInput
-                        id="enrollment_no"
-                        name="enrollment_no"
-                        value={data.enrollment_no}
-                        className="mt-1 block w-full"
-                        onChange={(e) => setData('enrollment_no', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.enrollment_no} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="class" value="Class" />
-
-                    <select
-                        id="class"
-                        name="class"
-                        value={data.class}
-                        className="mt-1 block w-full rounded-lg bg-transparent text-slate-200"
-                        onChange={(e) => setData('class', e.target.value)}
-                        required
-                    > 
-                <option value="" className="text-sm text-black">Select One</option>
-                {classes.map((classItem) => (
-                    <option key={classItem.id} value={classItem.name} className="text-sm text-black">
-                        {classItem.name}
-                    </option>
-                ))}
-                    
-                    </select>
-
-                    <InputError message={errors.class} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="semester" value="Semester" />
-
-                    <select
-                        id="semester"
-                        name="semester"
-                        value={data.semester}
-                        className="mt-1 block w-full bg-transparent text-slate-200 rounded-lg"
-                        onChange={(e) => setData('semester', e.target.value)}
-                        required
-                    >
-                <option value="" className='text-sm text-black'>Select One</option>
-                 {semesters.map((semester) => (
-                    <option key={semester.id} value={semester.name} className='text-sm text-black'>
-                        {semester.name}
-                    </option>
-                ))}
-                    </select>
-
-                    <InputError message={errors.class} className="mt-2" />
-                </div>
 
                 <div className="flex items-center justify-end mt-4">
                     <Link
-                        href={route('login')}
+                        href={route('admin.login')}
                         className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     >
                         Already registered?

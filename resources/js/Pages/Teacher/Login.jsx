@@ -5,7 +5,6 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import SwitchRoleLogin from '@/Components/SwitchRoleLogin';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Login({ status, canResetPassword }) {
@@ -13,7 +12,6 @@ export default function Login({ status, canResetPassword }) {
         email: '',
         password: '',
         remember: false,
-        loginas :'Student'
     });
 
     useEffect(() => {
@@ -25,7 +23,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route('teacher.login'));
     };
 
     return (
@@ -33,7 +31,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-            <SwitchRoleLogin role= {data.loginas}/>
+
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />

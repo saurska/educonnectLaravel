@@ -45,7 +45,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <h1 className="mt-6 text-3xl font-semibold text-gray-900 dark:text-white">
                                         Welcome to EduConnect
                                     </h1>
-
+                                    <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">
+                    A place where educators and learners connect.
+                </p>
                         </div>
                     </div>
 

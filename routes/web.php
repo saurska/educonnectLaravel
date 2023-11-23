@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\Profile\AdminProfileController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,20 +28,29 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('admin/dashboard', function () {
+    return Inertia::render('Admin/Dashboard');
+})->middleware(['auth:admin'])->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 // -----------------------------Teacher routes---------------------------------------
 Route::prefix('teacher')->group(function (){
 // Login routes    
-Route::get('/login',[TeacherController::class, 'index'] )->name('teacher_login_form');
+Route::get('login',[TeacherController::class, 'login_form'] )->name('teacher_login_form');
 
-Route::get('/login/owner',[TeacherController::class, 'login'] )->name('teacher_login');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('teacher.login');
+
+// Route::get('/login/owner',[TeacherController::class, 'login'] )->name('teacher_login');
 
 Route::get('/dashboard',[TeacherController::class, 'dashboard'] )->name('teacher.dashboard');
 
@@ -53,6 +63,6 @@ Route::post('/register',[TeacherController::class, 'store'] )->name('teacher.reg
 
 });
 
-//------------------------------ Teacher routes end ----------------------------------
 
 require __DIR__.'/auth.php';
+require __DIR__.'/adminauth.php';

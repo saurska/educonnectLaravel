@@ -18,6 +18,9 @@ class TeacherController extends Controller
         return Inertia::render('Teacher/Register');
     }
 
+    public function login_form(){
+        return Inertia::render('Teacher/Login');
+    }
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -34,7 +37,7 @@ class TeacherController extends Controller
 
         event(new TeacherRegistered($teacher));
 
-        Auth::login($teacher);
+        Auth::guard('teacher')->login($teacher);
 
         return redirect(RouteServiceProvider::HOME);
     }
