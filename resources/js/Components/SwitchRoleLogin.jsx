@@ -1,11 +1,11 @@
 import React from 'react'
 import Dropdown from '@/Components/Dropdown';
 import InputLabel from '@/Components/InputLabel'; 
-const SwitchRole = ({role}) => {
+const SwitchRoleLogin = ({role}) => {
 
   return (
     <div className='flex justify-center items-center'>
-    <InputLabel htmlFor="SignUpAs" value="Sign Up as" className='flex'/>
+    <InputLabel htmlFor="LoginAs" value="Log in as" className='flex'/>
     <Dropdown>
         <Dropdown.Trigger>
             <div className="cursor-pointer">
@@ -13,9 +13,9 @@ const SwitchRole = ({role}) => {
             </div>
         </Dropdown.Trigger>
         <Dropdown.Content>
-            <Dropdown.Link href={route('register')}>Student</Dropdown.Link>
+            <Dropdown.Link href={route('login')}>Student</Dropdown.Link>
             <Dropdown.Link href={route('teacher_register_form')}>Teacher</Dropdown.Link>
-            <Dropdown.Link href={route('admin.register')}>Admin</Dropdown.Link>
+            <Dropdown.Link href={route('admin.login')}>Admin</Dropdown.Link>
         </Dropdown.Content>
     </Dropdown>
 
@@ -24,4 +24,4 @@ const SwitchRole = ({role}) => {
   )
 }
 
-export default SwitchRole
+export default SwitchRoleLogin

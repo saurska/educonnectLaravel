@@ -22,7 +22,6 @@ class Teacher extends Authenticatable
         'name',
         'email',
         'password',
-        'enrollment_number',
         'phone',
         
     ];
