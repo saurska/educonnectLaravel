@@ -18,7 +18,7 @@ export default function Login({ status, canResetPassword }) {
 
     useEffect(() => {
         return () => {
-            reset('admin.password');
+            reset('password');
         };
     }, []);
 
