@@ -12,6 +12,12 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    public function posts()
+    {
+        return $this->morphMany(Post::class, 'postable');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

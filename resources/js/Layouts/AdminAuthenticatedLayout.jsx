@@ -24,6 +24,14 @@ export default function AdminAuthenticatedLayout({ user, header, children }) {
                                 <NavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink href={route('admin.student.show')} active={route().current('admin.student.show')}>
+                                    Students
+                                </NavLink>
+
+                                <NavLink href={route('admin.teacher.show')} active={route().current('admin.teacher.show')}>
+                                    Teachers
+                                </NavLink>
                             </div>
                         </div>
 
@@ -92,9 +100,16 @@ export default function AdminAuthenticatedLayout({ user, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
+                    <ResponsiveNavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.student.show')} active={route().current('admin.student.show')}>
+                            Students
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.teacher.show')} active={route().current('admin.teacher.show')}>
+                           Teachers
+                        </ResponsiveNavLink>
+
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

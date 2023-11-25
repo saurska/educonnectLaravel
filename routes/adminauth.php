@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\Admin\Students\ManageStudentController;
+use App\Http\Controllers\Admin\Teachers\ManageTeacherController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
@@ -63,4 +65,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' =>'admin
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' =>'admin.'], function () {
+    Route::get('/students', [ManageStudentController::class, 'create'])->name('student.show');
+    Route::get('/teachers', [ManageTeacherController::class, 'create'])->name('teacher.show');
+
 });
