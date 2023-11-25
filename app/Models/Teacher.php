@@ -2,28 +2,26 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Teacher extends Authenticatable
+class Teacher extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $guard = 'teacher';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $guard = 'teacher';
     protected $fillable = [
         'name',
         'email',
         'password',
-        'phone',
-        
+
     ];
 
     /**
@@ -45,4 +43,9 @@ class Teacher extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function posts()
+    {
+        return $this->morphMany(Post::class, 'postable');
+    }
 }

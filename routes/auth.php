@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -57,3 +58,16 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'post', 'as' =>'post.'], function () {
+    Route::get('create-post', [PostController::class, 'create'])
+    ->name('create');
+
+    Route::post('create-post', [PostController::class, 'store'])
+    ->name('store');
+
+    
+});
+
+
+

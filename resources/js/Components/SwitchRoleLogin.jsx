@@ -14,7 +14,7 @@ const SwitchRoleLogin = ({role}) => {
         </Dropdown.Trigger>
         <Dropdown.Content>
             <Dropdown.Link href={route('login')}>Student</Dropdown.Link>
-            <Dropdown.Link href={route('teacher_register_form')}>Teacher</Dropdown.Link>
+            <Dropdown.Link href={route('teacher.login')}>Teacher</Dropdown.Link>
             <Dropdown.Link href={route('admin.login')}>Admin</Dropdown.Link>
         </Dropdown.Content>
     </Dropdown>

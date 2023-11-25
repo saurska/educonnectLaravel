@@ -13,7 +13,6 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
-        class: '',
         signupAs:'Teacher',
     });
 
@@ -34,7 +33,7 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit}>
-                <SwitchRole role ={data.signupAs}/>
+                <SwitchRole role= {data.signupAs}/>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -86,8 +85,6 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-
-
                 <div className="mt-4">
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
@@ -105,9 +102,10 @@ export default function Register() {
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
+
                 <div className="flex items-center justify-end mt-4">
                     <Link
-                        href={route('login')}
+                        href={route('teacher.login')}
                         className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     >
                         Already registered?

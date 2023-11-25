@@ -23,7 +23,7 @@ export default function ResetPassword({ token, email }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('admin.password.store'));
+        post(route('teacher.password.store'));
     };
 
     return (
