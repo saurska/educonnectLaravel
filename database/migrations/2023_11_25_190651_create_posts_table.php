@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // assuming you have a 'users' table
             $table->text('content');
+            $table->unsignedBigInteger('user_id');
+            $table->string('user_type'); // Add a column for the user type (student or teacher)
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
