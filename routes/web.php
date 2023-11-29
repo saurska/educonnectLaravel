@@ -3,9 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Profile\AdminProfileController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Inertia\Response;
+use App\Models\Post;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,17 +31,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[PostController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('admin/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->middleware(['auth:admin'])->name('admin.dashboard');
 
-Route::get('teacher/dashboard', function () {
-    return Inertia::render('Teacher/Dashboard');
-})->middleware(['auth:teacher'])->name('teacher.dashboard');
+Route::get('teacher/dashboard',[PostController::class,'index'])->middleware(['auth:teacher'])->name('teacher.dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,3 +50,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 require __DIR__.'/adminauth.php';
 require __DIR__.'/teacherauth.php';
+require __DIR__.'/comment.php';

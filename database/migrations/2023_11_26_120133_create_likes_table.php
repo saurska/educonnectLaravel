@@ -9,14 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->unsignedBigInteger('user_id');
-            $table->string('user_type'); // Add a column for the user type (student or teacher)
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained(); // Foreign key to users table
+            $table->foreignId('post_id')->constrained(); // Foreign key to posts table
+            // Add other like-related fields
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('likes');
     }
 };

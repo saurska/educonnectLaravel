@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Teacher\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\TeacherProfileController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Teacher\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Teacher\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Teacher\Auth\EmailVerificationPromptController;
@@ -63,4 +64,10 @@ Route::group(['middleware' => ['auth:teacher'], 'prefix' => 'teacher', 'as' =>'t
     Route::get('/profile', [TeacherProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [TeacherProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [TeacherProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('create-post', [PostController::class, 'create'])
+    ->name('post.create');
 });
+// Route::get('/teacher/create-post', [PostController::class, 'index'])->name('profile.edit');
+
+

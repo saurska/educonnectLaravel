@@ -24,6 +24,10 @@ export default function TeacherAuthenticated({ user, header, children }) {
                                 <NavLink href={route('teacher.dashboard')} active={route().current('teacher.dashboard')}>
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink href={route('teacher.post.create')} active={route().current('teacher.post.create')}>
+                                    Create Post
+                                </NavLink>
                             </div>
                         </div>
 
@@ -56,6 +60,7 @@ export default function TeacherAuthenticated({ user, header, children }) {
 
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('teacher.profile.edit')}>Profile</Dropdown.Link>
+                                        <Dropdown.Link href={route('teacher.post.create')}>Create Post</Dropdown.Link>
                                         <Dropdown.Link href={route('teacher.logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -105,6 +110,7 @@ export default function TeacherAuthenticated({ user, header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('teacher.profile.edit')}>Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('teacher.post.create')}>Create Post</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('teacher.logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
