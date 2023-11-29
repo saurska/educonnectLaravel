@@ -48,4 +48,8 @@ class Teacher extends Authenticatable
     {
         return $this->morphMany(Post::class, 'postable');
     }
+    public function getNameAttribute()
+    {
+        return $this->attributes['name']; // Assuming 'name' is the field in your users table
+    }
 }

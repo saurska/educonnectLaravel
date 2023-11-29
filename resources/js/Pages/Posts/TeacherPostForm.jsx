@@ -4,10 +4,10 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 
-const PostForm = ({ auth }) => {
+const TeacherPostForm = ({ auth }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
         content: '',
         image: null,
@@ -27,7 +27,7 @@ const PostForm = ({ auth }) => {
     };
 
     return (
-        <AuthenticatedLayout
+        <TeacherAuthenticatedLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Dashboard</h2>}
         >
@@ -74,8 +74,8 @@ const PostForm = ({ auth }) => {
                     </form>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </TeacherAuthenticatedLayout>
     );
 };
 
-export default PostForm;
+export default TeacherPostForm;

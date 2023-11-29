@@ -59,13 +59,15 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'post', 'as' =>'post.'], function () {
+Route::group(['middleware' => ['minAuth'], 'prefix' => 'post', 'as' =>'post.'], function () {
     Route::get('create-post', [PostController::class, 'create'])
     ->name('create');
 
     Route::post('create-post', [PostController::class, 'store'])
     ->name('store');
 
+    Route::post('{post}/like', [PostController::class, 'like'])->name('like');
+    Route::post('/comment', [PostController::class, 'comment'])->name('comment');
     
 });
 

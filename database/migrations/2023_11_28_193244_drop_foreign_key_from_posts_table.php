@@ -12,19 +12,17 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedInteger('likes_count')->default(0);
-            $table->unsignedInteger('comments_count')->default(0);
+            $table->dropForeign(['user_id']);
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('likes_count');
-            $table->dropColumn('comments_count');
+            //
         });
     }
 };
