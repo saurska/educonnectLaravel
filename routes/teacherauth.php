@@ -12,6 +12,7 @@ use App\Http\Controllers\Teacher\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Teacher\Auth\RegisteredUserController;
 use App\Http\Controllers\Teacher\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AssignmentController;
 
 Route::group(['middleware' => ['guest:teacher'], 'prefix' => 'teacher', 'as' =>'teacher.'], function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -67,7 +68,11 @@ Route::group(['middleware' => ['auth:teacher'], 'prefix' => 'teacher', 'as' =>'t
 
     Route::get('create-post', [PostController::class, 'create'])
     ->name('post.create');
+
+    Route::group([ 'prefix' => 'assignment', 'as' =>'assignment.'], function () {
+        Route::get('/', [AssignmentController::class, 'index'])->name('index');
+        Route::get('/create', [AssignmentController::class, 'create'])->name('create');
+        Route::post('/create', [AssignmentController::class, 'store'])->name('store');
+    
+    });
 });
-// Route::get('/teacher/create-post', [PostController::class, 'index'])->name('profile.edit');
-
-
